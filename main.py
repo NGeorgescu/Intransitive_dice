@@ -79,14 +79,40 @@ class MultiplayerDice:
     Accessing the dice
     ------------------
     use either self.dice to see all the dice or self.get(i) to see the i-th die
+    
+    Finding a winning die
+    ---------------------
+    If your frien
+    
     """
     def __init__(self,n:int):
 
         if not n%2: raise ValueError('n must be odd')
+        self.n = n
         self.dice = [(n-i, (n//2-i)%n+n+1, 2*i%n+2*n+1) for i in range(n)]
 
-    def get(self,i):
+    def get(self,i:int):
         return self.dice[i]
 
+    def winning(self, taken):
+        """
+        Gets the winning dice given a die or some list of dice your 'friends' took
+
+        Parameters
+        ----------
+        taken : iterable or int
+            chosen die or dice 
+
+        Returns
+        -------
+        set of winning dice
+
+        """
+        if '__iter__' not in dir(taken): 
+            taken = [taken]
+        if max(taken)>=self.n: 
+            raise IndexError('dice chosen out of range')
+            
+        return {i for i in range(self.n) if all((i-t)%self.n>self.n//2 for t in taken)}
 
 

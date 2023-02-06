@@ -60,7 +60,7 @@ Notice that the first column is all the numbers from 1 to n, the second n+1 to 2
 
 This works because every die beats the next n//2 (three, in this case) dice on two each of the low, medium, and high values. Therefore 2/3s of cases are just decided by a low vs medium vs high roll. However, on the remaining 1/3 of cases, 2/3 of them are decided in this fashion.  Hence, the winning bias is 5/9 under this system.
 
-
+The Multiplayer Dice class has a "winning" class, wherein you can input the dice your competitors pulled in order to see which dice beats all of them.  If you have `m` competitors, you can guarantee a winning die with `n = 2m+1` dice.
 
 
 
